@@ -129,6 +129,7 @@ int main(int argc, char* argv[]) {
       gt_pack_list.push_back(gt_package);
   }
 
+
   // Create a UKF instance
   UKF ukf;
 
@@ -158,6 +159,7 @@ int main(int argc, char* argv[]) {
   out_file_ << "vy_ground_truth" << "\n";
 
 
+
   for (size_t k = 0; k < number_of_measurements; ++k) {
     // Call the UKF-based fusion
     ukf.ProcessMeasurement(measurement_pack_list[k]);
@@ -171,6 +173,7 @@ int main(int argc, char* argv[]) {
     out_file_ << ukf.x_(2) << "\t"; // vel_abs -est
     out_file_ << ukf.x_(3) << "\t"; // yaw_angle -est
     out_file_ << ukf.x_(4) << "\t"; // yaw_rate -est
+
 
     // output lidar and radar specific data
     if (measurement_pack_list[k].sensor_type_ == MeasurementPackage::LASER) {

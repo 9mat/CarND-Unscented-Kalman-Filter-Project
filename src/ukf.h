@@ -108,6 +108,15 @@ public:
    * @param meas_package The measurement at k+1
    */
   void UpdateRadar(MeasurementPackage meas_package);
+
+private:
+  MatrixXd R_laser, R_radar;
+  MatrixXd generate_aug_sigma_points();
+  void predict_sigma_points(const MatrixXd &Xsig_aug, double delta_t);
+  void predict_mean_covariance();
+
+  double predict_measurement(const VectorXd &z, const MatrixXd &Zsig, 
+    const MatrixXd &R, int zangle_idx=-1, int xangle_idx=-1);
 };
 
 #endif /* UKF_H */
